@@ -7,6 +7,8 @@
 #' @param ploidy Optional parameter, may be used if the ploidy of the sample is known.
 #' @return Output is, with the following columns: HRD	Telomeric AI	Mean size	Interstitial AI	Mean Size	Whole chr AI	Telomeric LOH	Mean size	Interstitial LOH	Mean Size	Whole chr LOH	Ploidy	Aberrant cell fraction	LST	HRDscore	adjustedHRDscore
 #' @export
+#' @import sequenza
+#' @import data.table
 scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL){
 
   if (reference == "grch38"){
