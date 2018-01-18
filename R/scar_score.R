@@ -10,7 +10,28 @@
 #' @import sequenza
 #' @import data.table
 scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL){
-
+    if(require("sequenza")){
+        print("sequenza is loaded correctly")
+    } else {
+        print("trying to install sequenza")
+        install.packages("sequenza")
+        if(require(sequenza)){
+            print("sequenza installed and loaded")
+        } else {
+            stop("could not install sequenza")
+        }
+    }
+    if(require("data.table")){
+        print("data.table is loaded correctly")
+    } else {
+        print("trying to install data.table")
+        install.packages("data.table")
+        if(require(data.table)){
+            print("data.table installed and loaded")
+        } else {
+            stop("could not install data.table")
+        }
+    }
   if (reference == "grch38"){
     chrominfo = chrominfo_grch38
   } else if(reference == "grch37"){
