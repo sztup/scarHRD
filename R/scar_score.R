@@ -9,29 +9,8 @@
 #' @export
 #' @import sequenza
 #' @import data.table
-scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL){
-    if(require("sequenza")){
-        print("sequenza is loaded correctly")
-    } else {
-        print("trying to install sequenza")
-        install.packages("sequenza")
-        if(require(sequenza)){
-            print("sequenza installed and loaded")
-        } else {
-            stop("could not install sequenza")
-        }
-    }
-    if(require("data.table")){
-        print("data.table is loaded correctly")
-    } else {
-        print("trying to install data.table")
-        install.packages("data.table")
-        if(require(data.table)){
-            print("data.table installed and loaded")
-        } else {
-            stop("could not install data.table")
-        }
-    }
+scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimit=15e6){
+
   if (reference == "grch38"){
     chrominfo = chrominfo_grch38
   } else if(reference == "grch37"){
@@ -53,7 +32,7 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL){
   #prep
   seg<-prerocess.hrd(seg)
   #Calculating the hrd score:
-  res_hrd <- calc.hrd(seg)
+  res_hrd <- calc.hrd(seg,sizelimit1=sizelimit)
   #print("HRDimput saved")
   #Calculating the telomeric allelic imbalance score:
   res_ai<- calc.ai_new(seg = seg, chrominfo = chrominfo) #<-- the first column is what I need

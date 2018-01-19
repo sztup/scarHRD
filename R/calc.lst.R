@@ -6,17 +6,6 @@
 #' @param chr.arm option to use chromosome arms defined during segmentation
 #' @return number of LSTs
 calc.lst<-function(seg, chrominfo=chrominfo,nA=7,chr.arm='no'){
-
-  ### Myriads implementation (Timms2014): LSTm = LST - kP, where k= 15.5 and P = ploidy
-
-  #Seg must be an ASCAT output object, in DNAcopy format.
-  #nA is the column where copy number of A allele is found
-  #Edit 20140325: added centromere locations based on SNP6 array: load('~/Desktop/DFProjects/GenomeData/chrominfo.snp6.RData')
-  #Edit 20140528: Added the option to use chromosome arms defined during segmentation. The option must give a column that holds the chromosome arm information.
-  #Edit 20140718: added min.probes, as described by Popova (50 for SNP6), changed 3 mb smoothing to work on one segment at a time, and included a check that two adjacent segments must not have a gap of 3 MB or more to call an LST. As described by Popova: http://www.bio-protocol.org/e814
-  #Edit 20160503: Removed sex chromosomes
-
-  #seg <- seg[seg[,5] >= min.probes,]
   nB <- nA+1
   samples <- unique(seg[,1])
   output <- setNames(rep(0,length(samples)), samples)
@@ -86,22 +75,4 @@ calc.lst<-function(seg, chrominfo=chrominfo,nA=7,chr.arm='no'){
     output[j] <- sum(sample.lst)
   }
   return(output)
-}
-
-shrink.seg.ai.wrapper<-function(seg){
-  new.seg <- seg[1,]
-  for(j in unique(seg[,1])){
-    sample.seg <- seg[seg[,1] %in% j,]
-    new.sample.seg <- seg[1,]
-    for(i in unique(sample.seg[,2])){
-      sample.chrom.seg <- sample.seg[sample.seg[,2] %in% i,,drop=F]
-      if(nrow(sample.chrom.seg) > 1){
-        sample.chrom.seg <- shrink.seg.ai(sample.chrom.seg)
-      }
-      new.sample.seg <- rbind(new.sample.seg, sample.chrom.seg)
-    }
-    new.seg <- rbind(new.seg, new.sample.seg[-1,])
-  }
-  seg <- new.seg[-1,]
-  return(seg)
 }

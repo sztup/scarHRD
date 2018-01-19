@@ -7,40 +7,15 @@
 #' @param shrink shrink
 #' @return number of Allelic Imbalances
 calc.ai_new<-function(seg, chrominfo, min.size=1e6, cont = 0,ploidyByChromosome=TRUE, shrink=TRUE){
-
-  ### Definition by Myriad (Timms2014): AI that extends to the subtelomere, does not cross the centromere, and is at least 11 MB in size
-
-  #edit 2014-01-17, added the ability to return location of NtAI's (return.loc)
-  #edit 2014-02-12, added the "shrink" option, which joins segments with same allelic copy number. These may be brought together if segments in between are filtered due to some settings, like minimum probe numbers, or size
-  #edit 2014-02-25, check.names is now a separate function
-  #edit 2014-05-27, disallow ploidy of zero
-  #edit 2016-05-03, remove sex chromosomes
-
-  # seg = segmented output in the form of an ASCAT out matrix, which also includes ploidy and contamination. Total CN in column 6, nA in column 7, nB in column 8, ploidy in column 9, and contamination in column 10
-  # chrominfo = a 3 column matrix with information about the chromosomes: chromosome name, chromosome length, centromere location.
-  # min.size = minimum size of segments
-  # min.probes = minimum number of probes in segments (I use 500 for the 900,000 probe SNP6, then scale down)
-  # type = should the algorithm test for AI or LOH?
-  # cont = contamination threshold. By default set at 0 to ignore contamination
-  # check.names = check and potentially fix if there are duplicated samples. Any duplicates shall be re-named
-  # shrink = joins segments of identical allelic copy number
-
-  if(ploidyByChromosome){cat("Determining chromosome-specific ploidy by major copy number fraction\n")}
-  if(!ploidyByChromosome){cat("Determining sample ploidy by major copy number fraction over-all\n")}
-
-  # remove segments smaller min.size and min.probes, and with too much contamination ##### NOTE: for backward-compatibility, this might need to be moved to after calling of telomeric segments
-  #seg <- seg[seg[,5] >= min.probes,]
   seg <- seg[seg[,4]- seg[,3] >= min.size,]
   seg <- seg[seg[,10] >= cont,]
-  if(shrink){  # This is repeated after the filtering of segments
+  if(shrink){
     seg <- shrink.seg.ai.wrapper(seg)
   }
-  #Add a column to call AI
   AI <- rep(NA, nrow(seg))
   seg <- cbind(seg, AI)
   samples <- as.character(unique(seg[,1]))
 
-  #extracting ploidy from the segmentation table
   ascat.ploidy <- setNames(seg[!duplicated(seg[,1]),9], seg[!duplicated(seg[,1]),1])
   for(j in samples){
     sample.seg <- seg[seg[,1] %in% j,]
@@ -51,8 +26,7 @@ calc.ai_new<-function(seg, chrominfo, min.size=1e6, cont = 0,ploidyByChromosome=
         ploidy <- c(ploidy, setNames(sum(tmp[,4]-tmp[,3]), k))
       }
       ploidy <- as.numeric(names(ploidy[order(ploidy,decreasing=T)]))[1]
-      sample.seg[,9] <- ploidy # update "ploidy" column, so the new calculated value can be returned
-      # add a columnm to define AI, with codes for telomeric/interstitial/whole chromosome. 1= telomeric, 2= interstitial, 3 = whole chromosome
+      sample.seg[,9] <- ploidy
       if(ploidy %in% c(1,seq(2, 200,by=2))){
         sample.seg[,'AI'] <- c(0,2)[match(sample.seg[,7] == sample.seg[,8], c('TRUE', 'FALSE'))]
       }
@@ -69,7 +43,6 @@ calc.ai_new<-function(seg, chrominfo, min.size=1e6, cont = 0,ploidyByChromosome=
         for(k in unique(sample.seg[,6])){
           tmp <- sample.chrom.seg[sample.chrom.seg[,6] %in% k,]
           ploidy <- c(ploidy, setNames(sum(tmp[,4]-tmp[,3]), k))
-          #Remove any ploidy calls of zero
           ploidy <- ploidy[!names(ploidy) %in% 0]
         }
         ploidy <- as.numeric(names(ploidy[order(ploidy,decreasing=T)]))[1]
