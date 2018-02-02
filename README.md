@@ -1,6 +1,6 @@
 # scarHRD
 
-scarHRD is an R package which determines the levels of homologous recombination deficiency (telomeric allelic imbalance, loss-off heterozigosity, number of large-scale transitions) based on NGS (WES, WGS) data.
+scarHRD is an R package which determines the levels of homologous recombination deficiency (telomeric allelic imbalance, loss of heterozygosity, number of large-scale transitions) based on NGS (WES, WGS) data.
 
 ## Citation
 
