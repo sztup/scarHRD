@@ -4,7 +4,7 @@
 #' @param seg A segmentation file
 #' @param ploidy0 ploidy, optional
 #' @return Output is
-prerocess.seqz<-function(seg, ploidy0=NULL){
+preprocess.seqz<-function(seg, ploidy0=NULL){
   if (!is.null(ploidy0)){
     ploidy0 = seq(1, 5.5, 0.1)
   }
