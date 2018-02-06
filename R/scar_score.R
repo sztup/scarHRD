@@ -20,7 +20,7 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimi
   }
 
   if (seqz==TRUE){
-    seg<-prerocess.seqz(seg,ploidy0=ploidy)
+    seg<-preprocess.seqz(seg,ploidy0=ploidy)
   } else {
     seg<-read.table(seg,header=T, check.names = F, stringsAsFactors = F, sep="\t")
     seg[,9]<-seg[,8]
@@ -30,7 +30,7 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimi
 
   }
   #prep
-  seg<-prerocess.hrd(seg)
+  seg<-preprocess.hrd(seg)
   #Calculating the hrd score:
   res_hrd <- calc.hrd(seg,sizelimit1=sizelimit)
   #print("HRDimput saved")
