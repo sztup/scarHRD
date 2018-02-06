@@ -2,7 +2,7 @@
 #'
 #' @param seg segmentation data
 #' @return preprocessed data
-prerocess.hrd<-function(seg){
+preprocess.hrd<-function(seg){
   seg <- seg[!seg[,2] %in% c(paste('chr',c('X','Y','x','y',23,24),sep=''),c('X','Y','x','y',23,24)),]
   seg[,1] <- as.character(seg[,1])
 
