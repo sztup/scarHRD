@@ -1,6 +1,6 @@
 #' Scar score
 #'
-#' Determining genomic scar score (telomeric allelic imbalance, loss-off heterozigosity, large-scle transitions), signs of homologous recombination deficiency
+#' Determining genomic scar score (telomeric allelic imbalance, loss of heterozygosity, large-scale transitions), signs of homologous recombination deficiency
 #' @param seg Imput file: either a binned sequenza out file (or any other segmentation file with the following columns: chromosome, position, base.ref, depth.normal, depth.tumor, depth.ratio, Af, Bf, zygosity.normal, GC.percent, good.reads, AB.normal, AB.tumor, tumor.strand) or an allele-specific segmentation file with the following columns: 1st column: sample name, 2nd column: chromosome, 3rd column: segmentation start, 4th column: segmentation end, 5th column: total copynumber, 6th column: copy number of A allele, 7th column: copy number of B allele
 #' @param reference: reference genome: either grch38 or grch37. Default is grch38.
 #' @param seqz Optional parameter, set to TRUE, if input file is a binned sequenza file.

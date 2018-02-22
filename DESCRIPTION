@@ -1,10 +1,10 @@
 Package: scarHRD
 Type: Package
-Title: Estimatig Genomic scars signatures (LST, TAI,LOH)
+Title: Estimating Genomic Scars Signatures (LST, TAI, LOH)
 Version: 0.1.0
-Author: Zsofia Sztupinszki, Nicolaj Birkbak
+Author: Zsofia Sztupinszki, Nicolai Birkbak
 Maintainer: Zsofia Sztupinszki <zsosupi@bioinformatics.dtu.dk>
-Description: This package determines the level of homologous recombination deficiency based on WXS or WGS data. The imput files may be...
+Description: This package determines the level of homologous recombination deficiency based on WXS or WGS data. The input files may be...
 Depends: R (>= 3.4.2),sequenza,copynumber,data.table
 License: GPL-3
 Encoding: UTF-8
