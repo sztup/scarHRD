@@ -1,0 +1,4 @@
+"" "x"
+"cellularity" 0.81
+"ploidy" 3.9
+"avg.depth.ratio" 1
