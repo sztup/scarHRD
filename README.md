@@ -30,9 +30,9 @@ The first genomic scar based homologous recombination deficiency measures were p
 Contact
 -------
 
-Zsofia Sztupinszki
-Technical University of Denmark
-contact: <zsosupi@bioinformatics.dtu.dk>
+Zsofia Sztupinszki  
+Technical University of Denmark  
+email: <zsosupi@bioinformatics.dtu.dk>  
 
 Getting started
 ===============
