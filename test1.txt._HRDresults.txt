@@ -1,2 +1,0 @@
-""	"HRD"	"Telomeric AI"	"Mean size"	"Interstitial AI"	"Mean Size"	"Whole chr AI"	"Telomeric LOH"	"Mean size"	"Interstitial LOH"	"Mean Size"	"Whole chr LOH"	"Ploidy"	"Aberrant cell fraction"	"LST"	"HRDscore"	"adjustedHRDscore"
-"test1.txt."	3	2	112884497	1	10853147	0	1	120412734	0	NA	0	3.9	1	2	7	-24
