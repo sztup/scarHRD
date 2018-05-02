@@ -154,11 +154,19 @@ font-size: 14px;
 </ol>
 <div id="input-file-examples" class="section level2">
 <h2>Input file examples</h2>
-<p>The scarHRD example</p>
+<p>The scarHRD input may be a detailed segmentation file from Sequenza:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example1&lt;-<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;test1.small.seqz.gz&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;scarHRD&quot;</span>)
+<span class="co">#a&lt;-read.table(example1, header=T)</span>
+<span class="co">#head(a)</span></code></pre></div>
+<p>or a simplified file, including the total, and allele-specific copy-number:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example2&lt;-<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;test1.small.seqz.gz&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;scarHRD&quot;</span>)
+<span class="co">#a&lt;-read.table(example2, header=T)</span>
+<span class="co">#head(a)</span></code></pre></div>
 </div>
 <div id="usage-example" class="section level2">
 <h2>Usage example</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">scar_score</span>(<span class="st">&quot;/examples/test1.small.seqz.gz&quot;</span>,<span class="dt">reference =</span> <span class="st">&quot;grch38&quot;</span>, <span class="dt">seqz=</span><span class="ot">TRUE</span>)
+<span class="kw">scar_score</span>(<span class="st">&quot;/examples/test2.txt&quot;</span>,<span class="dt">reference =</span> <span class="st">&quot;grch38&quot;</span>, <span class="dt">seqz=</span><span class="ot">FALSE</span>)</code></pre></div>
 </div>
 <div id="optional-parameters" class="section level2">
 <h2>Optional parameters</h2>

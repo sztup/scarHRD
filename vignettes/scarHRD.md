@@ -89,12 +89,26 @@ A typical workflow of determining the genomic scar scores for a tumor sample has
 2. Determine the scar scores with scarHRD R package  
 
 ##Input file examples  
-The scarHRD example 
+The scarHRD input may be a detailed segmentation file from Sequenza:  
+
+```r
+example1<-system.file("extdata", "test1.small.seqz.gz", package = "scarHRD")
+#a<-read.table(example1, header=T)
+#head(a)
+```
+or a simplified file, including the total, and allele-specific copy-number:  
+
+```r
+example2<-system.file("extdata", "test1.small.seqz.gz", package = "scarHRD")
+#a<-read.table(example2, header=T)
+#head(a)
+```
 
 ##Usage example  
 
 ```r
-getwd()
+scar_score("/examples/test1.small.seqz.gz",reference = "grch38", seqz=TRUE)
+scar_score("/examples/test2.txt",reference = "grch38", seqz=FALSE)
 ```
 
 ##Optional parameters  
