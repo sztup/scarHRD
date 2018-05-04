@@ -4,7 +4,8 @@
 \alias{scar_score}
 \title{Scar score}
 \usage{
-scar_score(seg, reference = "grch38", seqz = FALSE, ploidy = NULL)
+scar_score(seg, reference = "grch38", seqz = FALSE, ploidy = NULL,
+  sizelimitLOH = 1.5e+07, outputdir = NULL)
 }
 \arguments{
 \item{seg}{Imput file: either a binned sequenza out file (or any other segmentation file with the following columns: chromosome, position, base.ref, depth.normal, depth.tumor, depth.ratio, Af, Bf, zygosity.normal, GC.percent, good.reads, AB.normal, AB.tumor, tumor.strand) or an allele-specific segmentation file with the following columns: 1st column: sample name, 2nd column: chromosome, 3rd column: segmentation start, 4th column: segmentation end, 5th column: total copynumber, 6th column: copy number of A allele, 7th column: copy number of B allele}

@@ -4,12 +4,14 @@
 \alias{calc.hrd}
 \title{Determnine number of loss-off heterosigosity}
 \usage{
-calc.hrd(seg, nA = 7)
+calc.hrd(seg, nA = 7, return.loc = FALSE, sizelimit1)
 }
 \arguments{
 \item{seg}{segmentation data}
 
 \item{nA}{column number of copy number of A allele}
+
+\item{sizelimit}{lower limit of the size of LOHs}
 }
 \value{
 number of LOH
