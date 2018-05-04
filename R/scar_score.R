@@ -9,7 +9,7 @@
 #' @export
 #' @import sequenza
 #' @import data.table
-scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimit=15e6){
+scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimitLOH=15e6, outputdir=NULL){
 
   if (reference == "grch38"){
     chrominfo = chrominfo_grch38
@@ -20,7 +20,9 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimi
   }
 
   if (seqz==TRUE){
+    cat('Preprocessing started...')
     seg<-preprocess.seqz(seg,ploidy0=ploidy)
+    cat('Preprocessing finished')
   } else {
     seg<-read.table(seg,header=T, check.names = F, stringsAsFactors = F, sep="\t")
     seg[,9]<-seg[,8]
@@ -30,10 +32,10 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimi
 
   }
   #prep
+  cat('Determining HRD-LOH, LST, TAI')
   seg<-preprocess.hrd(seg)
   #Calculating the hrd score:
-  res_hrd <- calc.hrd(seg,sizelimit1=sizelimit)
-  #print("HRDimput saved")
+  res_hrd <- calc.hrd(seg,sizelimit1=sizelimitLOH)
   #Calculating the telomeric allelic imbalance score:
   res_ai<- calc.ai_new(seg = seg, chrominfo = chrominfo) #<-- the first column is what I need
   #Calculating the large scale transition scores:
@@ -47,8 +49,7 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, ploidy=NULL, sizelimi
   }
 
   HRDresulst<-c(res_hrd,res_ai,res_lst,sum_HRD0,sum_HRDc)
-  names(HRDresulst)<-c("HRD",colnames(res_ai),"LST", "HRDscore","adjustedHRDscore")
-  #write.table(HRDresulst,paste0(getwd(),"/_newww_HRDresults.txt"),col.names=NA,sep="\t")
+  names(HRDresulst)<-c("HRD",colnames(res_ai),"LST", "HRD-sum","adjusted-HRDsum")
   run_name<-names(sum_HRD0)
   write.table(t(HRDresulst),paste0(getwd(),"/",run_name,"_HRDresults.txt"),col.names=NA,sep="\t",row.names=unique(seg[,1]))
 }

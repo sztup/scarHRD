@@ -4,7 +4,7 @@
 #' @param nA column number of copy number of A allele
 #' @param sizelimit lower limit of the size of LOHs
 #' @return number of LOH
-calc.hrd<-function(seg, nA=7, return.loc=FALSE,sizelimit1=sizelimit){
+calc.hrd<-function(seg, nA=7, return.loc=FALSE,sizelimit1){
   nB <- nA+1
   output <- rep(0, length(unique(seg[,1])))
   names(output) <- unique(seg[,1])
@@ -24,7 +24,7 @@ calc.hrd<-function(seg, nA=7, return.loc=FALSE,sizelimit1=sizelimit){
     segSamp[segSamp[,nA] > 1,nA] <- 1
     segSamp <- shrink.seg.ai.wrapper(segSamp)
     segLOH <- segSamp[segSamp[,nB] == 0 & segSamp[,nA] != 0,,drop=F]
-    segLOH <- segLOH[segLOH[,4]-segLOH[,3] > sizelimit,,drop=F]
+    segLOH <- segLOH[segLOH[,4]-segLOH[,3] > sizelimit1,,drop=F]
     segLOH <- segLOH[!segLOH[,2] %in% chrDel,,drop=F]
     output[i] <- nrow(segLOH)
     if(return.loc){
