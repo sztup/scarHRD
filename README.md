@@ -70,9 +70,8 @@ A typical workflow of determining the genomic scar scores for a tumor sample has
  This step is time-consuming and compute-intensive.  
  Example for using Sequenza:  
 > sequenza-utils bam2seqz -gc /reference/GRCh38.gc50Base.txt.gz --fasta /reference/GRCh38.d1.vd1.fa -n /data/normal.bam --tumor /data/tumor.bam -C chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chr23 chr24 chrX | sequenza-utils seqz\_binning -w 50 -s - | gzip &gt; /results/tumor\_small.seqz.gz
-
 Further details can be found in the Vignette of Sequenza: <https://cran.r-project.org/web/packages/sequenza/vignettes/sequenza.pdf>  
-2. Determine the scar scores with scarHRD R package
+2. Determine the scar scores with scarHRD R package.  
 This step only takes a few minutes.  
 
 Input file examples
