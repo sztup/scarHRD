@@ -1,4 +1,4 @@
-#' Determnine number of loss-off heterosigosity
+#' Determine number of loss-off heterosigosity
 #'
 #' @param seg segmentation data
 #' @param nA column number of copy number of A allele
