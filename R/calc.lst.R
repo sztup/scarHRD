@@ -1,4 +1,4 @@
-#' Determnine large-scale transitions
+#' Determine large-scale transitions
 #'
 #' @param seg segmentation data
 #' @param chrominfo reference genome version
