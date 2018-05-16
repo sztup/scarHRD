@@ -1,4 +1,4 @@
-#' Determnine Allelic imbalance
+#' Determine Allelic imbalance
 #'
 #' @param seg segmentation data
 #' @param chrominfo reference genome version
