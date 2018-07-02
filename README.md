@@ -60,6 +60,16 @@ library(devtools)
 install_github('sztup/scarHRD')
 ```
 
+Running on GRCh38
+------------
+
+A modification of the `copynumber` R package needs to be used which can be installed via devtools from github:
+
+``` r
+library(devtools)
+install_github('aroneklund/copynumber')
+```
+
 Citation
 --------
 
