@@ -65,6 +65,12 @@ The first genomic scar based homologous recombination deficiency measures were p
   + Software: R  
   + Operating system: Linux, OS X, Windows  
   + R version: 3.4.0  
+  + **latest version of Sequenza R package** must be installed from **Bitbucket** https://bitbucket.org/sequenza_tools/sequenza   
+
+```r
+library(devtools)
+install_bitbucket('sequenza_tools/sequenza')
+```  
 
 ##Installation  
 `scarHRD` can be installed via devtools from github:  
