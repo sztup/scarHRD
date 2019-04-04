@@ -10,7 +10,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-  sequenza (>= 2.1.2),
+  sequenza (>= 2.0.0),
   data.table (>= 1.10)
 RoxygenNote: 6.0.1
 Suggests: knitr,
