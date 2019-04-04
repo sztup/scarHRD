@@ -25,7 +25,7 @@ preprocess.seqz<-function(seg, ploidy0=NULL,outputdir=NULL){
   cint <- get.ci(extract.fit)
   cellularity <- cint$max.cellularity
   ploidy <- cint$max.ploidy
-  avg.depth.ratio <- mean(extract$gc$adj[, 2])
+  avg.depth.ratio <- extract$avg.depth.ratio #avg.depth.ratio <- mean(extract$gc$adj[, 2])
   info_seg<-c(cellularity,ploidy,avg.depth.ratio)
   names(info_seg)<-c("cellularity","ploidy","avg.depth.ratio")
   write.table(t(info_seg),paste0(outputdir,"/",run_name,"_info_seg.txt"),sep="\t",row.names=F)
