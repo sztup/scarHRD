@@ -29,7 +29,7 @@ preprocess.seqz<-function(seg, ploidy0=NULL,outputdir=NULL){
   info_seg<-c(cellularity,ploidy,avg.depth.ratio)
   names(info_seg)<-c("cellularity","ploidy","avg.depth.ratio")
   write.table(t(info_seg),paste0(outputdir,"/",run_name,"_info_seg.txt"),sep="\t",row.names=F)
-  allele.cn <- sequenza::baf.bayes(Bf = seg.tab$Bf, CNt.max = 20, depth.ratio = seg.tab$depth.ratio, avg.depth.ratio = 1,
+  allele.cn <- sequenza:::baf.bayes(Bf = seg.tab$Bf, CNt.max = 20, depth.ratio = seg.tab$depth.ratio, avg.depth.ratio = 1,
                                    cellularity = cint$max.cellularity, ploidy = cint$max.ploidy,
                                    sd.ratio = seg.tab$sd.ratio, weight.ratio = seg.len, sd.Bf = seg.tab$sd.BAF,
                                    weight.Bf = 1, ratio.priority = FALSE, CNn = 2)
