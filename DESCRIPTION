@@ -3,7 +3,7 @@ Type: Package
 Title: Estimating Genomic scars signatures (LST, TAI,LOH)
 Version: 0.1.0
 Author: Zsofia Sztupinszki, Nicolai Birkbak
-Maintainer: Zsofia Sztupinszki <zsosupi@bioinformatics.dtu.dk>
+Maintainer: Zsofia Sztupinszki <zmsz@cancer.dk>
 Description: This package determines the level of homologous recombination deficiency based on WXS or WGS data. The input files may be...
 Depends: R (>= 3.4.0)
 License: GPL-3
