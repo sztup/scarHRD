@@ -1,15 +1,15 @@
 Package: scarHRD
 Type: Package
 Title: Estimating Genomic scars signatures (LST, TAI,LOH)
-Version: 0.1.0
+Version: 0.1.1
 Author: Zsofia Sztupinszki, Nicolai Birkbak
-Maintainer: Zsofia Sztupinszki <zmsz@cancer.dk>
-Description: This package determines the level of homologous recombination deficiency based on WXS or WGS data. The input files may be...
-Depends: R (>= 3.4.0)
-License: GPL-3
+Maintainer: Zsofia Sztupinszki <zsofia.sztupinszki@childrens.harvard.edu>
+Description: This package determines the level of homologous recombination deficiency based on WXS or WGS data.
+Depends: R (>= 3.5.0)
+License: MIT License
 Encoding: UTF-8
 LazyData: true
-Imports: sequenza (>= 2.0.0), data.table (>= 1.10)
+Imports: sequenza (>= 2.1.2), data.table (>= 1.10)
 RoxygenNote: 6.0.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
