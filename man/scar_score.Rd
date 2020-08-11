@@ -4,17 +4,19 @@
 \alias{scar_score}
 \title{Scar score}
 \usage{
-scar_score(seg, reference = "grch38", seqz = FALSE, ploidy = NULL,
+scar_score(seg, reference = "grch38", chr.in.names=TRUE, seqz = FALSE, ploidy = NULL,
   sizelimitLOH = 1.5e+07, outputdir = NULL)
 }
 \arguments{
 \item{seg}{Imput file: either a binned sequenza out file (or any other segmentation file with the following columns: chromosome, position, base.ref, depth.normal, depth.tumor, depth.ratio, Af, Bf, zygosity.normal, GC.percent, good.reads, AB.normal, AB.tumor, tumor.strand) or an allele-specific segmentation file with the following columns: 1st column: sample name, 2nd column: chromosome, 3rd column: segmentation start, 4th column: segmentation end, 5th column: total copynumber, 6th column: copy number of A allele, 7th column: copy number of B allele}
 
+\item{chr.in.names}{Optional parameter, default: TRUE, set to FALSE if input file does not contain 'chr' in chromosome names.}
+
 \item{seqz}{Optional parameter, set to TRUE, if input file is a binned sequenza file.}
 
 \item{ploidy}{Optional parameter, may be used if the ploidy of the sample is known.}
 
-\item{reference:}{reference genome: either grch38 or grch37. Default is grch38.}
+\item{reference:}{reference genome: either grch38 or grch37 or mouse. Default is grch38.}
 }
 \value{
 Output is, with the following columns: HRD	Telomeric AI	Mean size	Interstitial AI	Mean Size	Whole chr AI	Telomeric LOH	Mean size	Interstitial LOH	Mean Size	Whole chr LOH	Ploidy	Aberrant cell fraction	LST	HRDscore	adjustedHRDscore
