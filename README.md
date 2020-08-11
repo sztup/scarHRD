@@ -1,25 +1,3 @@
-<style>
-body {
-text-align: justify;
-font-family: Arial}
-
-.moderateFrame{ /* Framed text */
-border: 1px solid;
-border-color: #8c5400;
-color: black;
-background-color: #ffe2ad;
-padding-top: 10px;
-padding-bottom: 10px;
-border-radius: 5px;
-padding-left: 10px;
-padding-right: 10px;
-font-size: 14px;
-}
-
-</style>
-
-<br> <br>
-
 scarHRD R package Manual
 ========================
 
