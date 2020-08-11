@@ -3,7 +3,7 @@ title: "scarHRD R package manual"
 author:
 - name: Zsofia Sztupinszki, Miklos Diossy, Marcin Krzystanek, Nicolai J. Birkbak, Francesco Favero, Lilla Reiniger, István Csabai, Aron C. Eklund, Ali Syed, Zoltan Szallasi
   affiliation: Technical University of Denmark, Semmelweis University, Eötvös Loránd University, University of Copenhagen, The Francis Crick Institute, Danish National Life Science Supercomputing Center, Harvard Medical School
-  email: zsosupi@dtu.bioinformatics.dk
+  email: zsofia.sztupinszki@childrens.harvard.edu
 package: scarHRD
 bibliography: scarHRD.bib
 output:
@@ -51,7 +51,7 @@ font-size: 14px;
 <br>
 <br>
 
-#Introduction  
+# Introduction  
 `scarHRD` is an R package which determines the levels of homologous recombination deficiency (telomeric allelic imbalance, loss off heterozygosity, number of large-scale transitions) based on NGS (WES, WGS) data.  
 
 The first genomic scar based homologous recombination deficiency measures were produced using SNP arrays. Since this technology has been largely replaced by next generation sequencing it has become important to develop algorithms that derive the same type of genomic scar-scores from next generation sequencing (WXS, WGS) data. In order to perform this analysis, here **we introduce the `scarHRD` R package** and show that using this method the **SNP-array based and next generation sequencing based derivation of HRD scores show good correlation.**  
@@ -59,14 +59,14 @@ The first genomic scar based homologous recombination deficiency measures were p
 <br>
 <br>
 
-#Getting started  
+# Getting started  
 
-##Minimum requirements  
+## Minimum requirements  
   + Software: R  
   + Operating system: Linux, OS X, Windows  
   + R version: 3.4.0  
 
-##Installation  
+## Installation  
 `scarHRD` can be installed via devtools from github:  
 
 ```{r part1, echo=TRUE, eval=FALSE}
@@ -74,20 +74,20 @@ library(devtools)
 install_github('sztup/scarHRD',build_vignettes = TRUE)
 ```
 
-##Citation
-Please cite the following paper: manuscript submitted.  
+# Citation
+Please cite the following paper: Sztupinszki et al, Migrating the SNP array-based homologous recombination deficiency measures to next generation sequencing data of breast cancer, npj Breast Cancer, https://www.nature.com/articles/s41523-018-0066-6.    
 
 <br>
 <br>
 
-#Workflow overview  
+# Workflow overview  
 A typical workflow of determining the genomic scar scores for a tumor sample has the following steps:  
 
 1. Call allele specific copy number profile on paired normal-tumor BAM files. This step has to be executed before running scarHRD. We recommend using **Sequenza** [@pmid25319062] http://www.cbs.dtu.dk/biotools/sequenza/ for copy number segmentation, Other tools (e.g. ASCAT [@pmid20837533]) may also be used in this step.  
   
 2. Determine the scar scores with scarHRD R package  
 
-##Input file examples  
+## Input file examples  
 The scarHRD input may be a detailed segmentation file from Sequenza:  
 ```{r part3, echo=TRUE, eval=TRUE}
 example1<-system.file("extdata", "test1.small.seqz.gz", package = "scarHRD")
@@ -101,21 +101,24 @@ a<-read.table(example2, header=T)
 head(a)
 ```
 
-##Usage example  
+## Usage example  
 ```{r part2, echo=TRUE, eval=FALSE}
 scar_score("/examples/test1.small.seqz.gz",reference = "grch38", seqz=TRUE)
 scar_score("/examples/test2.txt",reference = "grch38", seqz=FALSE)
 ```
 
-##Optional parameters  
-`reference` -- the reference genome used, `grch38` or `grch37`
+If your file does not contain 'chr' in chromosome names, use `chr.in.names=FALSE`.
+
+## Optional parameters  
+`reference` -- the reference genome used, `grch38` or `grch37` or `mouse`
+`chr.in.names` -- default: TRUE, set to FALSE if input file does not contain 'chr' in chromosome names
 
 <br>
 <br>
 
-#Genomic scar scores  
+# Genomic scar scores  
 
-##Loss of Heterozygosity (HRD-LOH)  
+## Loss of Heterozygosity (HRD-LOH)  
 The HRD-LOH score was described based on investigation in SNP-array-based copy number profiles of ovarian cancer [@pmid22933060]. In this paper the authors showed that the samples with deficient BRCA1, BRCA2 have higher HRD-LOH scores compared to BRCA-intact samples, thus this measurement may be a reliable tool to estimate the sample's homologous recombination capacity.   
 <p class="moderateFrame">The definition of a sample's HRD-LOH score is the </span> <span style="font-weight:bold">number of 15 Mb exceeding LOH regions which do not cover the whole chromosome.</span>.
 </p>
@@ -126,7 +129,7 @@ In our manuscript we also investigated **if this 15 Mb cutoff is appropriate for
 ![Figure 1.A Visual representation of the HRD-LOH score on short theoretical chromosomes. Figure 1.B: Calculating HRD-LOH from a biallelic copy-number profile; LOH regions a, and c, would both increase the score by 1, while neither b, or d, would add to its value (b, does not pass the length requirement, and d covers a whole chromosome)](hrd-loh.svg)
 <br>
 
-##Large Scale Transitions (LST)  
+## Large Scale Transitions (LST)  
 The presence of Large Scale Transitions in connection with homologous recombination deficiency was first in studied in basal-like breast cancer [@pmid23047548]. Based on SNP-array derived copy number profiles ... the number of telomeric allelic imbalances 
 <p class="moderateFrame">A large scale transition is defined as a  </span> <span style="font-weight:bold">chromosomal break between adjacent regions of at least 10 Mb, with a distance between them not larger than 3Mb..</span>.
 </p>
@@ -136,7 +139,7 @@ The presence of Large Scale Transitions in connection with homologous recombinat
 </div>
 <br>
 
-##Number of Telomeric Allelic Imbalances  
+## Number of Telomeric Allelic Imbalances  
 Allelic imbalance (AI) is the unequal contribution of parental allele sequences with or without changes in the overall copy number of the region. Our group have previously found, that the number telomeric AIs is indicative of defective DNA repair in ovarian cancer and triple-negative breast cancer, and that higher number of telomeric AI is associated with better response to cisplatin treatment [@pmid22576213].  
 <p class="moderateFrame">The number of telomeric allelic imbalances is the </span> <span style="font-weight:bold">number AIs that extend to the telomeric end of a chromosome.</span>.
 </p>
@@ -145,4 +148,7 @@ Allelic imbalance (AI) is the unequal contribution of parental allele sequences 
 </div>
 <br>
 
-#References  
+# Running on mouse genomes  
+`scarHRD()` can be run on mouse genome using `referrence="mouse"`. However it is problematic to evaluate the HRD-score in mouse. The mouse chromosome are telocentric, meaning that the centrome is next to the telomeric region. This makes it hard to determine and evaluate Telomeric Allelic Imbalance score. Moreover the mouse cancer models are usually isogenic, which yield low number of heterogeneous positions, which are essential for determining HRD-LOH scores. So calculating genomic scar scores (telomeric AI, HRD-LOH, LST) is possible for mice, but it has a very limited utility.  
+
+# References  
