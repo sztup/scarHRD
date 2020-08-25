@@ -39,7 +39,7 @@ scar_score<-function(seg,reference = "grch38", chr.in.names=TRUE, m,seqz=FALSE, 
 
   if (seqz==TRUE){
     cat('Preprocessing started...\n')
-    seg<-preprocess.seqz(seg,ploidy0=ploidy)
+    seg<-preprocess.seqz(seg, ploidy0=ploidy, chr.in.names=chr.in.names)
     cat('Preprocessing finished \n')
   } else {
     seg<-read.table(seg,header=T, check.names = F, stringsAsFactors = F, sep="\t")
