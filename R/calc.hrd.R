@@ -4,7 +4,7 @@
 #' @param nA column number of copy number of A allele
 #' @param sizelimit lower limit of the size of LOHs
 #' @return number of LOH
-calc.hrd<-function(seg, nA=7, return.loc=FALSE,sizelimit1){
+calc.hrd<-function(seg, nA=6, return.loc=FALSE,sizelimit1){
   nB <- nA+1
   output <- rep(0, length(unique(seg[,1])))
   names(output) <- unique(seg[,1])
@@ -40,4 +40,3 @@ calc.hrd<-function(seg, nA=7, return.loc=FALSE,sizelimit1){
     return(output)
   }
 }
-

@@ -5,7 +5,7 @@
 #' @param nA column number of copy number of A allele
 #' @param chr.arm option to use chromosome arms defined during segmentation
 #' @return number of LSTs
-calc.lst<-function(seg, chrominfo=chrominfo,nA=7,chr.arm='no'){
+calc.lst<-function(seg, chrominfo=chrominfo,nA=6,chr.arm='no'){
   nB <- nA+1
   samples <- unique(seg[,1])
   output <- setNames(rep(0,length(samples)), samples)
