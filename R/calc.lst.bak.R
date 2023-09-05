@@ -53,8 +53,7 @@ calc.lst<-function(seg, chrominfo=chrominfo,nA=7,chr.arm='no'){
         p.arm <- cbind(p.arm[,1:8], c(0,1)[match((p.arm[,4]-p.arm[,3]) >= 10e6, c('FALSE','TRUE'))])
         for(k in 2:nrow(p.arm)){
           if(p.arm[k,9] == 1 & p.arm[(k-1),9]==1 & (p.arm[k,3]-p.arm[(k-1),4]) < 3e6){
-            cnvseg <- rbind(cnvseg,c(p.arm[k,1:8],paste(c(p.arm[k,2],p.arm[k,3],p.arm[k,4]),collapse="_")))
-            cnvseg <- rbind(cnvseg,c(p.arm[k-1,1:8],paste(c(p.arm[k,2],p.arm[k,3],p.arm[k,4]),collapse="_")))
+            cnvseg <- rbind(cnvseg,p.arm[k,1:8])
             sample.lst <- c(sample.lst, 1)
           }
         }
@@ -69,8 +68,7 @@ calc.lst<-function(seg, chrominfo=chrominfo,nA=7,chr.arm='no'){
         q.arm <- cbind(q.arm[,1:8], c(0,1)[match((q.arm[,4]-q.arm[,3]) >= 10e6, c('FALSE','TRUE'))])
         for(k in 2:nrow(q.arm)){
           if(q.arm[k,9] == 1 & q.arm[(k-1),9]==1 & (q.arm[k,3]-q.arm[(k-1),4]) < 3e6){
-            cnvseg <- rbind(cnvseg,c(q.arm[k,1:8],paste(c(q.arm[k,2],q.arm[k,3],q.arm[k,4]),collapse="_")))
-            cnvseg <- rbind(cnvseg,c(q.arm[k-1,1:8],paste(c(q.arm[k,2],q.arm[k,3],q.arm[k,4]),collapse="_")))
+            cnvseg <- rbind(cnvseg,q.arm[k,1:8])
             sample.lst <- c(sample.lst, 1)
 
           }

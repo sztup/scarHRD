@@ -15,6 +15,7 @@ args <- commandArgs(T)
 source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/calc.lst.bak.R")
 source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/calc.ai_new.R")
 source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/preprocess.hrd.R")
+source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/preprocess.seqz.R")
 source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/shrink.seg.ai.wrapper.R")
 source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/shrink.seg.ai.R")
 source("/mnt/GenePlus002/genecloud/Org_terminal/org_52/terminal/licq_18810756054/Research/HRD/07_we7h/013_HRD_CNV/code/scarHRD/R/calc.hrd.R")
@@ -100,4 +101,4 @@ scar_score<-function(seg,reference = "grch38", seqz=FALSE, facets=FALSE, facets.
   return(t(HRDresulst))
 }
 
-scar_score(args[1],reference = "grch37",outputdir=args[2])
+scar_score(args[1],reference = "grch37",seqz=TRUE,outputdir=args[2])
