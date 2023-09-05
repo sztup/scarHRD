@@ -29,7 +29,8 @@ preprocess.seqz<-function(seg, ploidy0=NULL, chr.in.names=TRUE, outputdir=NULL){
   cint <- get.ci(extract.fit)
   cellularity <- cint$max.cellularity
   ploidy <- cint$max.ploidy
-  avg.depth.ratio <- mean(extract$gc$adj[, 2])
+  #avg.depth.ratio <- mean(extract$gc$adj[, 2])
+  avg.depth.ratio <- extract$avg.depth.ratio
   info_seg<-c(cellularity,ploidy,avg.depth.ratio)
   names(info_seg)<-c("cellularity","ploidy","avg.depth.ratio")
   write.table(t(info_seg),paste0(outputdir,"/",run_name,"_info_seg.txt"),sep="\t",row.names=F)
@@ -38,7 +39,7 @@ preprocess.seqz<-function(seg, ploidy0=NULL, chr.in.names=TRUE, outputdir=NULL){
                                    sd.ratio = seg.tab$sd.ratio, weight.ratio = seg.len, sd.Bf = seg.tab$sd.BAF,
                                    weight.Bf = 1, ratio.priority = FALSE, CNn = 2)
   seg.tab$CN <- allele.cn[,1]
-  allele.cn <- as.data.table(allele.cn)
+  allele.cn <- as.data.frame(allele.cn)
   #Making imput file
   seg <- data.frame(SampleID = as.character(run_name), Chromosome = seg.tab$chromosome, Start_position = seg.tab$start.pos,
                     End_position = seg.tab$end.pos, Nprobes = 1, total_cn = allele.cn$CNt, A_cn = allele.cn$B,

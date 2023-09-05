@@ -76,8 +76,10 @@ calc.ai_new<-function(seg, chrominfo, min.size=1e6, cont = 0,ploidyByChromosome=
   no.events <- matrix(0, nrow=length(samples), ncol=12)
   rownames(no.events) <- samples
   colnames(no.events) <- c("Telomeric AI", "Mean size", "Interstitial AI", "Mean Size", "Whole chr AI", "Telomeric LOH",  "Mean size", "Interstitial LOH", "Mean Size", "Whole chr LOH", "Ploidy", "Aberrant cell fraction")
+  TAI_seg = ""
   for(j in samples){
     sample.seg <- seg[seg[,1] %in% j,]
+    TAI_seg = sample.seg[sample.seg[,'AI'] == 1,]
     no.events[j,1] <- nrow(sample.seg[sample.seg[,'AI'] == 1,])
     no.events[j,2] <- mean(sample.seg[sample.seg[,'AI'] == 1,4] - sample.seg[sample.seg[,'AI'] == 1,3])
     no.events[j,3] <- nrow(sample.seg[sample.seg[,'AI'] == 2,])
@@ -93,5 +95,5 @@ calc.ai_new<-function(seg, chrominfo, min.size=1e6, cont = 0,ploidyByChromosome=
     no.events[j,9] <- mean(sample.seg[sample.seg[,'AI'] == 2,4] - sample.seg[sample.seg[,'AI'] == 2,3])
     no.events[j,10] <- nrow(sample.seg[sample.seg[,'AI'] == 3,])
   }
-  return(no.events)
+  return(list(no.events,TAI_seg))
 }

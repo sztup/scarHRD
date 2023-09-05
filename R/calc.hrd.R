@@ -37,7 +37,8 @@ calc.hrd<-function(seg, nA=7, return.loc=FALSE,sizelimit1){
   if(return.loc){
     return(out.seg)
   } else {
-    return(output)
+    out = list(output, segLOH)
+    return(out)
   }
 }
 
